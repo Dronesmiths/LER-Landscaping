@@ -4,6 +4,11 @@
 # AWS Configuration (contains sensitive bucket names and IDs)
 scripts/aws-config.sh
 
+# AWS Credentials (NEVER commit these!)
+*.csv
+*accessKeys*
+GITHUB-SECRETS-VALUES.md
+
 # IDE
 .vscode/
 .idea/
