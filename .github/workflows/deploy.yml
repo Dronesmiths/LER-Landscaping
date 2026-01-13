@@ -1,0 +1,72 @@
+name: Deploy to AWS S3 and CloudFront
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: Sync files to S3
+        run: |
+          # Upload HTML files with no-cache headers
+          aws s3 sync . "s3://${{ secrets.S3_BUCKET_NAME }}" \
+            --exclude "*" \
+            --include "*.html" \
+            --cache-control "public, max-age=0, must-revalidate" \
+            --delete
+          
+          # Upload CSS files with long cache
+          aws s3 sync css/ "s3://${{ secrets.S3_BUCKET_NAME }}/css/" \
+            --content-type "text/css" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --delete
+          
+          # Upload JS files with long cache
+          aws s3 sync js/ "s3://${{ secrets.S3_BUCKET_NAME }}/js/" \
+            --content-type "application/javascript" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --delete
+          
+          # Upload images with long cache
+          aws s3 sync images/ "s3://${{ secrets.S3_BUCKET_NAME }}/images/" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --delete
+          
+          # Upload subdirectories
+          for dir in about contact locations services; do
+            if [ -d "$dir" ]; then
+              aws s3 sync "$dir/" "s3://${{ secrets.S3_BUCKET_NAME }}/$dir/" \
+                --cache-control "public, max-age=0, must-revalidate" \
+                --delete
+            fi
+          done
+      
+      - name: Invalidate CloudFront cache
+        if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
+      
+      - name: Deployment summary
+        run: |
+          echo "✅ Deployment completed successfully!"
+          echo "S3 Bucket: ${{ secrets.S3_BUCKET_NAME }}"
+          if [ ! -z "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" ]; then
+            echo "CloudFront Distribution: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
+          fi

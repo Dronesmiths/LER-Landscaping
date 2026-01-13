@@ -1,1 +1,16 @@
+# macOS
 .DS_Store
+
+# AWS Configuration (contains sensitive bucket names and IDs)
+scripts/aws-config.sh
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
