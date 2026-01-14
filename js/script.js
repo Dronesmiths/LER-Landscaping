@@ -85,4 +85,54 @@ document.addEventListener('DOMContentLoaded', () => {
             range.addEventListener('input', e => update(e.target.value));
         }
     });
+
+    // Language Toggle Logic
+    const langToggle = document.getElementById('langToggle');
+    const currentLang = localStorage.getItem('preferredLang') || 'en';
+
+    function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        localStorage.setItem('preferredLang', lang);
+
+        // Update Toggle UI
+        const enSpan = document.querySelector('.lang-en');
+        const esSpan = document.querySelector('.lang-es');
+
+        if (enSpan && esSpan) {
+            if (lang === 'es') {
+                enSpan.classList.remove('active');
+                esSpan.classList.add('active');
+            } else {
+                esSpan.classList.remove('active');
+                enSpan.classList.add('active');
+            }
+        }
+
+        // Translate elements with data attributes
+        document.querySelectorAll('[data-en]').forEach(el => {
+            const translation = el.getAttribute(`data-${lang}`);
+            if (translation) {
+                // If it's a placeholder, update that too
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    if (el.hasAttribute('placeholder')) {
+                        el.setAttribute('placeholder', translation);
+                    }
+                } else {
+                    el.textContent = translation;
+                }
+            }
+        });
+
+        // Handle meta description if needed - simpler to just stick to content for now
+    }
+
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
+            const nextLang = document.documentElement.lang === 'en' ? 'es' : 'en';
+            setLanguage(nextLang);
+        });
+    }
+
+    // Initialize Language
+    setLanguage(currentLang);
 });

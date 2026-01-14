@@ -58,15 +58,21 @@
             </a>
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/services/">Services</a></li>
-                    <li><a href="/about/">About Us</a></li>
-                    <li><a href="/contact/">Contact</a></li>
+                    <li><a href="/" class="active" data-en="Home" data-es="Inicio">Home</a></li>
+                    <li><a href="/services/" data-en="Services" data-es="Servicios">Services</a></li>
+                    <li><a href="/about/" data-en="About Us" data-es="Nosotros">About Us</a></li>
+                    <li><a href="/contact/" data-en="Contact" data-es="Contacto">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
+                <button class="lang-toggle" id="langToggle">
+                    <span class="lang-en active">EN</span>
+                    <span class="lang-sep">/</span>
+                    <span class="lang-es">ES</span>
+                </button>
                 <a href="tel:6612279018" class="phone-link mobile-hide"><i class="fas fa-phone"></i> (661) 227-9018</a>
-                <a href="/contact/" class="btn btn-primary">Get a Quote</a>
+                <a href="/contact/" class="btn btn-primary" data-en="Get a Quote" data-es="Obtener Presupuesto">Get a
+                    Quote</a>
                 <button class="mobile-menu-btn" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
             </div>
         </div>
@@ -75,12 +81,17 @@
     <!-- 1. Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Premium Landscaping & Tree Services</h1>
-            <p>Complete landscape maintenance, irrigation, tree care, and yard cleanups. Trusted by homeowners in
+            <h1 data-en="Premium Landscaping & Tree Services" data-es="Servicios Premium de Paisajismo y Árboles">
+                Premium Landscaping & Tree Services</h1>
+            <p data-en="Complete landscape maintenance, irrigation, tree care, and yard cleanups. Trusted by homeowners in Palmdale and Lancaster for professional results."
+                data-es="Mantenimiento integral de jardines, riego, cuidado de árboles y limpieza de patios. Confiado por propietarios en Palmdale y Lancaster por sus resultados profesionales.">
+                Complete landscape maintenance, irrigation, tree care, and yard cleanups. Trusted by homeowners in
                 Palmdale and Lancaster for professional results.</p>
             <div class="hero-btns">
-                <a href="/contact/" class="btn btn-primary">Get a Free Estimate</a>
-                <a href="#services" class="btn btn-secondary">Our Services</a>
+                <a href="/contact/" class="btn btn-primary" data-en="Get a Free Estimate"
+                    data-es="Obtener Estimación Gratis">Get a Free Estimate</a>
+                <a href="#services" class="btn btn-secondary" data-en="Our Services" data-es="Nuestros Servicios">Our
+                    Services</a>
             </div>
         </div>
     </section>

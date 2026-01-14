@@ -166,6 +166,44 @@ nav a.active {
     color: var(--primary-green);
 }
 
+/* Language Toggle */
+.lang-toggle {
+    background: rgba(0, 113, 61, 0.08);
+    border: 1px solid rgba(0, 113, 61, 0.2);
+    border-radius: var(--border-radius-pill);
+    padding: 6px 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--primary-green);
+    transition: all 0.3s ease;
+    font-family: var(--font-heading);
+    line-height: 1;
+}
+
+.lang-toggle:hover {
+    background: var(--primary-green);
+    color: var(--white);
+    border-color: var(--primary-green);
+}
+
+.lang-toggle span {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+.lang-toggle span.active {
+    opacity: 1;
+}
+
+.lang-sep {
+    font-weight: 400;
+    opacity: 0.2 !important;
+}
+
 /* Mobile Menu Button - Hidden mainly */
 .mobile-menu-btn {
     display: none;
