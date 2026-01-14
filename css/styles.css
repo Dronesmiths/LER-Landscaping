@@ -247,6 +247,15 @@ nav a.active {
         font-size: 0.9rem;
     }
 
+    /* Language Toggle Mobile Centering */
+    .lang-toggle {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
     /* Mobile Navigation Menu */
     nav {
         position: absolute;
