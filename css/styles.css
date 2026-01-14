@@ -606,7 +606,66 @@ footer {
         align-items: center;
     }
 
+    /* Contact Page Mobile Fixes */
+    .features-grid[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
 
+    .feature-card[style*="text-align: left"] {
+        text-align: center !important;
+    }
+
+    /* Form Groups */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    /* Features Grid Mobile */
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    /* Service Cards Mobile */
+    .service-card {
+        height: 250px;
+    }
+
+    /* Pricing Grid Mobile */
+    .av-pricing-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Service Area Grid Mobile */
+    .av-palmdale-area-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Explore Grid Mobile */
+    .av-explore-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Section Titles Mobile */
+    .section-title h2 {
+        font-size: 2rem;
+    }
 
     /* Responsive adjustments */
     .img-overlay img {
