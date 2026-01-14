@@ -1492,6 +1492,24 @@ footer {
     .aw-footer-inner {
         flex-direction: column;
         gap: 30px;
+        text-align: center;
+    }
+
+    .aw-footer-brand,
+    .aw-footer-contact,
+    .aw-footer-services,
+    .aw-footer-locations {
+        text-align: center;
+    }
+
+    .aw-footer-phone {
+        justify-content: center;
+    }
+
+    .aw-footer-services ul,
+    .aw-footer-locations ul {
+        list-style: none;
+        padding: 0;
     }
 }
 
